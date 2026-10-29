@@ -1,0 +1,27 @@
+site_name: CyberChef for Mere Mortals
+site_description: A web based workbench for converting and analysing data, explained in plain language. Chaining operations into recipes, unwrapping encodings, checking hashes against published test vectors, and identifying unknown data with Magic, with the limits stated plainly.
+site_url: https://paulsullivan33-dev.github.io/cyberchef-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code MIT'
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What CyberChef Is: what-cyberchef-is.md
+  - The Moving Parts: the-moving-parts.md
+  - Installing CyberChef: installing-cyberchef.md
+  - Your First Recipe: your-first-recipe.md
+  - The Recipe Model: the-recipe-model.md
+  - Encodings and Decoding Chains: encodings-and-decoding.md
+  - Hashing and Checksums: hashing-and-checksums.md
+  - Finding What You Have: finding-what-you-have.md
+  - Self-Hosting CyberChef: self-hosting-cyberchef.md
+  - Recipes: recipes.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md

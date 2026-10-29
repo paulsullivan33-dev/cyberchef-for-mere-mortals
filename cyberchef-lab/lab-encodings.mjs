@@ -1,0 +1,23 @@
+// CyberChef for Mere Mortals — lab: encodings (t01)
+const cc = await import("cyberchef");
+import { readFileSync } from "node:fs";
+const pkg = JSON.parse(readFileSync("node_modules/cyberchef/package.json", "utf8"));
+const P = "The quick brown fox jumps over the lazy dog";
+console.log("CyberChef version (npm package):", pkg.version);
+console.log("Exported names in the node build:", Object.keys(cc).length);
+console.log("Input (pangram):", P);
+console.log();
+const b64 = cc.toBase64(P).toString();
+console.log("To Base64:      ", b64);
+console.log("From Base64:    ", cc.fromBase64(b64).toString(), " <- round trip");
+const hex = cc.toHex(P).toString();
+console.log("To Hex (space): ", hex);
+console.log("From Hex:       ", cc.fromHex(hex).toString(), " <- round trip");
+console.log("To Hex (none):  ", cc.toHex(P, ["None"]).toString());
+console.log("URL Encode (default args):        ", cc.URLEncode("salt & vinegar? 100%!").toString());
+console.log("URL Encode (all special chars):   ", cc.URLEncode("salt & vinegar? 100%!", [true]).toString());
+console.log("URL Decode:     ", cc.URLDecode("salt%20%26%20vinegar%3F%20100%25%21").toString(), " <- round trip");
+console.log("ROT13:          ", cc.ROT13("Meet at the park gate").toString());
+console.log("ROT13 again:    ", cc.ROT13("Zrrg ng gur cnex tngr").toString(), " <- ROT13 is its own inverse");
+console.log("To Morse Code:  ", cc.toMorseCode("SOS").toString());
+console.log("From Morse:     ", cc.fromMorseCode("... --- ...").toString(), " <- round trip");

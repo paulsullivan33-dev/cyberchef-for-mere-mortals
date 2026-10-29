@@ -1,0 +1,23 @@
+$ node lab-encodings.mjs
+CyberChef version (npm package): 11.5.0
+Exported names in the node build: 513
+Input (pangram): The quick brown fox jumps over the lazy dog
+
+To Base64:       VGhlIHF1aWNrIGJyb3duIGZveCBqdW1wcyBvdmVyIHRoZSBsYXp5IGRvZw==
+From Base64:     The quick brown fox jumps over the lazy dog  <- round trip
+To Hex (space):  54 68 65 20 71 75 69 63 6b 20 62 72 6f 77 6e 20 66 6f 78 20 6a 75 6d 70 73 20 6f 76 65 72 20 74 68 65 20 6c 61 7a 79 20 64 6f 67
+From Hex:        The quick brown fox jumps over the lazy dog  <- round trip
+To Hex (none):   54686520717569636b2062726f776e20666f78206a756d7073206f76657220746865206c617a7920646f67
+URL Encode (default args):         salt%20&%20vinegar?%20100%!
+URL Encode (all special chars):    salt%20%26%20vinegar%3F%20100%25%21
+URL Decode:      salt & vinegar? 100%!  <- round trip
+ROT13:           Zrrg ng gur cnex tngr
+ROT13 again:     Meet at the park gate  <- ROT13 is its own inverse
+To Morse Code:   ... --- ...
+From Morse:      SOS  <- round trip
+
+--- independent checks with system tools ---
+$ printf %s "The quick brown fox jumps over the lazy dog" | base64
+VGhlIHF1aWNrIGJyb3duIGZveCBqdW1wcyBvdmVyIHRoZSBsYXp5IGRvZw==
+$ printf %s "The quick brown fox jumps over the lazy dog" | od -A n -t x1 | tr -s " " | sed "s/^ //" | tr -d "\n"; echo
+54 68 65 20 71 75 69 63 6b 20 62 72 6f 77 6e 2066 6f 78 20 6a 75 6d 70 73 20 6f 76 65 72 20 7468 65 20 6c 61 7a 79 20 64 6f 67

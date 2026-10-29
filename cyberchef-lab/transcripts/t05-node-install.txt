@@ -1,0 +1,17 @@
+$ curl -s https://gchq.github.io/CyberChef/ | grep -o "<title>[^<]*</title>" | head -1
+<title>CyberChef</title>
+$ node --version
+v24.22.1
+$ npm ls cyberchef terser 2>/dev/null | head -4
+cyberchef-node@1.0.0 /home/hatch/workspace/cyberchef-node
++-- cyberchef@11.5.0
+`-- terser@5.51.2
+
+
+Install notes from this lab (commands as run):
+  npm install cyberchef                    -> FAILED in its grunt-based install script in this sandbox
+  npm install cyberchef --ignore-scripts   -> installed cyberchef 11.5.0 (the package ships ready source)
+  npm install terser                       -> one optional dependency the node build imports at startup
+  one dependency (crypto-api 0.8.5) imports files without the .mjs extension, which Node refuses;
+  the lab added the extensions to those import lines inside node_modules (42 lines) and the import then worked.
+  After that, every lab script in cyberchef-lab/ ran unmodified CyberChef operations.

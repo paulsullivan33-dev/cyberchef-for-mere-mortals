@@ -1,0 +1,21 @@
+$ node lab-recipes.mjs
+bake [To Base64, To Hex, no delimiter]: 5647686c4948463161574e7249474a796233647549475a76654342716457317763794276646d56794948526f5a53427359587035494752765a773d3d
+unwrapped by [From Hex, From Base64]: The quick brown fox jumps over the lazy dog
+recipe as JSON: [{"op":"To Base64","args":["A-Za-z0-9+/=",true]},{"op":"ROT13"}]
+bake from the parsed-back JSON: ITuyVUS1nJAeVTWlo3qhVTMirPOdqJ1jplOiqzIlVUEbMFOfLKc5VTEiMj==
+same recipe, ops called directly: ITuyVUS1nJAeVTWlo3qhVTMirPOdqJ1jplOiqzIlVUEbMFOfLKc5VTEiMj==
+Fork in the node build: Sorry, the Fork operation is not available in the Node.js version of CyberChef.
+From UNIX Timestamp on its own (978346800): Mon 1 January 2001 11:00:00 UTC
+strict From Base64 on '!!! not base64 !!!' stops the bake: Base64 input contains non-alphabet char(s)
+lenient From Base64 on the same input gives: "[jÇº"
+
+--- independent checks with system tools ---
+$ printf %s "The quick brown fox jumps over the lazy dog" | base64 | tr -d "\n" | od -A n -t x1 | tr -d " \n"; echo
+5647686c4948463161574e7249474a796233647549475a76654342716457317763794276646d56794948526f5a53427359587035494752765a773d3d
+$ date -u -d @978346800 +"%a %d %b %Y %H:%M:%S UTC"
+Mon 01 Jan 2001 11:00:00 UTC
+
+--- addendum: padding behaviour (chapter 4's break-it exercise) ---
+$ node -e "... fromBase64 on the pangram's Base64 with the trailing '==' removed ..."
+lenient, no padding: "The quick brown fox jumps over the lazy dog"
+strict,  no padding: bake stops — "Base64 input contains non-alphabet char(s)"

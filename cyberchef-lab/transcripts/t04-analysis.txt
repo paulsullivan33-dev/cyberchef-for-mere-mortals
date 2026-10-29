@@ -1,0 +1,33 @@
+$ node lab-analysis.mjs
+Sample JWT built in the lab (HS256, key 'sample-secret-key'):
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzYW1wbGUtcmVhZGVyIiwicHVycG9zZSI6Imd1aWRlLWRlbW8iLCJleHAiOjE4OTM0NTYwMDB9.C2wsUJ_4Tt7kUycvhb69ppZum5DZRvA9ffbhkBVbvoM
+
+JWT Decode:
+{
+    "sub": "sample-reader",
+    "purpose": "guide-demo",
+    "exp": 1893456000
+}
+JWT Verify with the right key returns the claims:
+{
+    "sub": "sample-reader",
+    "purpose": "guide-demo",
+    "exp": 1893456000
+}
+JWT Verify with a wrong key stops the bake: JsonWebTokenError: invalid signature
+
+Magic on the Base64 pangram — first suggested recipe:
+[{"op":"From Base64","args":["A-Za-z0-9+/=",true,false]}]
+Magic on the JWT — first suggested op: "JWT Decode" | candidate matches: 2
+Magic on the hex pangram — first suggested op: "From Hex"
+Magic (depth 2) on Base64-of-hex — first recipe chain: From Base64 -> From Hex
+
+Frequency distribution of the pangram: dataLength = 43
+  ' ' : 18.60%
+  'e' : 6.98%
+  'o' : 9.30%
+  't' : 2.33%
+  'z' : 2.33%
+Entropy of the pangram (Shannon, bits per byte): 4.4320
+Entropy of its Base64 form: 4.9505
+Entropy of its hex form: 3.2838

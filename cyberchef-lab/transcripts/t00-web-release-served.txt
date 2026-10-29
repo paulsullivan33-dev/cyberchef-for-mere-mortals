@@ -1,0 +1,18 @@
+$ python3 -m http.server 8734   (serving the unzipped release, app/)
+$ curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8734/CyberChef_v11.5.0.html
+200
+$ curl -s http://127.0.0.1:8734/CyberChef_v11.5.0.html | grep -o "<title>[^<]*</title>"
+<title>CyberChef</title>
+$ zcat index.html.gz | grep -o "<title>[^<]*</title>" (the pre-compressed copy is the same page)
+<title>CyberChef</title>
+$ curl -s -o /dev/null -w "%{http_code} %{size_download} bytes" http://127.0.0.1:8734/assets/main.js
+200 13616390 bytes
+
+--- the downloaded page carries built-in example links in URL-recipe form (chapter 5) ---
+$ grep -o "href=\"#recipe=[^&]*" CyberChef_v11.5.0.html | head -4
+href="#recipe=From_Base64('A-Za-z0-9%2B/%3D',true)
+href="#recipe=Translate_DateTime_Format('Standard%20date%20and%20time','DD/MM/YYYY%20HH:mm:ss','UTC','dddd%20Do%20MMMM%20YYYY%20HH:mm:ss%20Z%20z','Australia/Queensland')
+href="#recipe=Parse_IPv6_address()
+href="#recipe=From_Hexdump()Gunzip()
+$ grep -o "href=\"#recipe=" CyberChef_v11.5.0.html | wc -l   (the page is one long line, so count occurrences)
+4
